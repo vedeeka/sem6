@@ -127,27 +127,93 @@
 #queue
 
 
-list_stack = []
+# list_stack = []
 
-def push(element):
-    list_stack.append(element)
-    print(f"enqueued {element} to queue.  queue data: {list_stack}")
+# def push(element):
+#     list_stack.append(element)
+#     print(f"enqueued {element} to queue.  queue data: {list_stack}")
 
-def pop():
-    if not list_stack:
-        print("queue is empty. Cannot dequeue.")
+# def pop():
+#     if not list_stack:
+#         print("queue is empty. Cannot dequeue.")
+#         return None
+#     popped_element = list_stack.remove(list_stack[0])
+#     print(f"dequeue {popped_element} from queue.  queue: {list_stack}")
+#     return popped_element
+
+# while True:
+#     match input("enter operation (push = 1/ pop = 2) and 3 to end: "):
+#         case "1":
+#             element = input("enter element to enqueue: ")
+#             push(element)
+#         case "2":
+#             pop()
+#         case "3":
+            
+#             break
+
+
+#linked list
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+def display(head):
+    current = head
+    while current:
+        print(current.data, end=" -> ")
+        current = current.next
+    print("null")
+
+
+def insert_back(head, data):
+    newNode = Node(data)
+
+    if head is None:
+        return newNode
+
+    current = head
+    while current.next:
+        current = current.next
+
+    current.next = newNode
+    return head
+
+
+def delete_value(head, value):
+    if head is None:
         return None
-    popped_element = list_stack.remove(list_stack[0])
-    print(f"dequeue {popped_element} from queue.  queue: {list_stack}")
-    return popped_element
+
+ 
+    if head.data == value:
+        return head.next
+
+    current = head
+    while current.next and current.next.data != value:
+        current = current.next
+
+    if current.next:
+        current.next = current.next.next
+
+    return head
+
+
+head = None
 
 while True:
-    match input("enter operation (push = 1/ pop = 2) and 3 to end: "):
-        case "1":
-            element = input("enter element to enqueue: ")
-            push(element)
-        case "2":
-            pop()
-        case "3":
-            
-            break
+    op = int(input("\nEnter 1 to add, 2 to remove, 3 to exit: "))
+
+    if op == 1:
+        n = int(input("Enter element to add: "))
+        head = insert_back(head, n)
+        display(head)
+
+    elif op == 2:
+        n = int(input("Enter element to delete: "))
+        head = delete_value(head, n)
+        display(head)
+
+    elif op == 3:
+        break
