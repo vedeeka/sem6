@@ -182,6 +182,7 @@ def insert_back(head, data):
     return head
 
 
+
 def delete_value(head, value):
     if head is None:
         return None
