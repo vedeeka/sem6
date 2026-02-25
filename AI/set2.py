@@ -1,218 +1,218 @@
 # 1) Take a string input and print it
 
-text = input("Enter a string: ")
-print("You entered:", text)
+# text = input("Enter a string: ")
+# print("You entered:", text)
 
 
-# 2) Find the length of a string
+# # 2) Find the length of a string
 
-text = input("Enter a string: ")
-length = len(text)
+# text = input("Enter a string: ")
+# length = len(text)
 
-print("Length of string:", length)
+# print("Length of string:", length)
 
 
 
-# 3) Print each character of a string on a new line
+# # 3) Print each character of a string on a new line
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-for ch in text:
-    print(ch)
+# for ch in text:
+#     print(ch)
 
 
 
-# 4) Count characters without using len()
+# # 4) Count characters without using len()
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-count = 0
-for ch in text:
-    count += 1
+# count = 0
+# for ch in text:
+#     count += 1
 
-print("Total characters:", count)
+# print("Total characters:", count)
 
 
 
 
-# 5) Convert a string to uppercase
+# # 5) Convert a string to uppercase
 
-text = input("Enter a string: ")
-print("Uppercase:", text.upper())
+# text = input("Enter a string: ")
+# print("Uppercase:", text.upper())
 
 
 
-# 6) Convert a string to lowercase
+# # 6) Convert a string to lowercase
 
-text = input("Enter a string: ")
-print("Lowercase:", text.lower())
+# text = input("Enter a string: ")
+# print("Lowercase:", text.lower())
 
 
-# 7) Check whether a string is empty or not
+# # 7) Check whether a string is empty or not
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-if text == "":
-    print("String is empty")
-else:
-    print("String is not empty")
+# if text == "":
+#     print("String is empty")
+# else:
+#     print("String is not empty")
 
 
-# 8) Count the number of vowels in a string
+# # 8) Count the number of vowels in a string
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-vowels = "aeiouAEIOU"
-count = 0
+# vowels = "aeiouAEIOU"
+# count = 0
 
-for ch in text:
-    if ch in vowels:
-        count += 1
+# for ch in text:
+#     if ch in vowels:
+#         count += 1
 
-print("Vowel count:", count)
+# print("Vowel count:", count)
 
 
 
-# 9) Count the number of consonants in a string
+# # 9) Count the number of consonants in a string
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-vowels = "aeiouAEIOU"
-count = 0
+# vowels = "aeiouAEIOU"
+# count = 0
 
-for ch in text:
-    if ch.isalpha() and ch not in vowels:
-        count += 1
+# for ch in text:
+#     if ch.isalpha() and ch not in vowels:
+#         count += 1
 
-print("Consonant count:", count)
+# print("Consonant count:", count)
 
 
 
-# 10) Check whether a string contains only digits
+# # 10) Check whether a string contains only digits
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-if text.isdigit():
-    print("Only digits")
-else:
-    print("Not only digits")
+# if text.isdigit():
+#     print("Only digits")
+# else:
+#     print("Not only digits")
 
 
 
-# 11) Check whether a string starts with a vowel
+# # 11) Check whether a string starts with a vowel
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-if text[0] in "aeiouAEIOU":
-    print("Starts with vowel")
-else:
-    print("Does not start with vowel")
+# if text[0] in "aeiouAEIOU":
+#     print("Starts with vowel")
+# else:
+#     print("Does not start with vowel")
 
 
-# 12) Check whether a string ends with a consonant
+# # 12) Check whether a string ends with a consonant
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-last = text[-1]
+# last = text[-1]
 
-if last.isalpha() and last not in "aeiouAEIOU":
-    print("Ends with consonant")
-else:
-    print("Does not end with consonant")
+# if last.isalpha() and last not in "aeiouAEIOU":
+#     print("Ends with consonant")
+# else:
+#     print("Does not end with consonant")
 
 
 
-# 13) Count how many times a character appears
+# # 13) Count how many times a character appears
 
-text = input("Enter a string: ")
-char = input("Enter character to count: ")
+# text = input("Enter a string: ")
+# char = input("Enter character to count: ")
 
-count = 0
+# count = 0
 
-for ch in text:
-    if ch == char:
-        count += 1
+# for ch in text:
+#     if ch == char:
+#         count += 1
 
-print("Occurrences:", count)
+# print("Occurrences:", count)
 
 
 
-# 14) Reverse a string using a loop
+# # 14) Reverse a string using a loop
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-reverse = ""
+# reverse = ""
 
-for ch in text:
-    reverse = ch + reverse
+# for ch in text:
+#     reverse = ch + reverse
 
-print("Reversed string:", reverse)
+# print("Reversed string:", reverse)
 
 
-# 15) Check whether a string is a palindrome
+# # 15) Check whether a string is a palindrome
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-if text == text[::-1]:
-    print("Palindrome")
-else:
-    print("Not a palindrome")
+# if text == text[::-1]:
+#     print("Palindrome")
+# else:
+#     print("Not a palindrome")
 
 
 
-# 16) Count the number of words in a string
+# # 16) Count the number of words in a string
 
-text = input("Enter a sentence: ")
+# text = input("Enter a sentence: ")
 
-words = text.split()
+# words = text.split()
 
-print("Word count:", len(words))
+# print("Word count:", len(words))
 
 
 
-# 17) Find the first repeated character
+# # 17) Find the first repeated character
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-seen = []
+# seen = []
 
-for ch in text:
-    if ch in seen:
-        print("First repeated character:", ch)
-        break
-    seen.append(ch)
+# for ch in text:
+#     if ch in seen:
+#         print("First repeated character:", ch)
+#         break
+#     seen.append(ch)
 
 
-# 18) Remove all spaces from a string
+# # 18) Remove all spaces from a string
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-result = text.replace(" ", "")
+# result = text.replace(" ", "")
 
-print("Without spaces:", result)
+# print("Without spaces:", result)
 
 
 
-# 19) Replace all vowels with *
+# # 19) Replace all vowels with *
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-result = ""
+# result = ""
 
-for ch in text:
-    if ch in "aeiouAEIOU":
-        result += "*"
-    else:
-        result += ch
+# for ch in text:
+#     if ch in "aeiouAEIOU":
+#         result += "*"
+#     else:
+#         result += ch
 
-print("Result:", result)
+# print("Result:", result)
 
 
 
-# 20) Sort characters of a string alphabetically
+# # 20) Sort characters of a string alphabetically
 
-text = input("Enter a string: ")
+# text = input("Enter a string: ")
 
-sorted_text = sorted(text)
+# sorted_text = sorted(text)
 
-print("Sorted string:", "".join(sorted_text))
+# print("Sorted string:", "".join(sorted_text))
