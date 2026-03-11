@@ -6,47 +6,42 @@ def water_jug(m, n, d):
         return -1
 
     q = deque()
-    q.append((0, 0, 0))  
+    q.append((0, 0, 0, [(0,0)]))  
 
     visited = [[False for _ in range(n+1)] for _ in range(m+1)]
     visited[0][0] = True
 
     while q:
 
-        jug1, jug2, count = q.popleft()
+        jug1, jug2, count, path = q.popleft()
 
         if jug1 == d or jug2 == d:
+
+           
+            for i, state in enumerate(path):
+                print(f" ( {state[0]}, {state[1]} )")
+
             return count
 
         states = []
 
-
-        states.append((m, jug2))
-
-        
+        states.append((m, jug2))  
         states.append((jug1, n))
+        states.append((0, jug2)) 
+        states.append((jug1, 0)) 
 
-       
-        states.append((0, jug2))
-
-        
-        states.append((jug1, 0))
-
-  
-        pour = min(jug1, n - jug2)
+        pour = min(jug1, n - jug2) 
         states.append((jug1 - pour, jug2 + pour))
 
-        
-        pour = min(jug2, m - jug1)
+        pour = min(jug2, m - jug1) 
         states.append((jug1 + pour, jug2 - pour))
 
         for new_j1, new_j2 in states:
             if not visited[new_j1][new_j2]:
                 visited[new_j1][new_j2] = True
-                q.append((new_j1, new_j2, count + 1))
+                q.append((new_j1, new_j2, count + 1, path + [(new_j1,new_j2)]))
 
     return -1
-
 
 
 m = int(input("Enter capacity of Jug 1 (m): "))
@@ -58,4 +53,4 @@ result = water_jug(m, n, d)
 if result == -1:
     print("Target cannot be obtained")
 else:
-    print("Minimum operations required:", result)
+    print("\nMinimum operations required:", result)
