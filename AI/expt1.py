@@ -50,5 +50,5 @@ for i in range(n):
 
 start = int(input("Enter starting vertex: "))
 
-bfs(adj_matrix, start)
+
 dfs(adj_matrix, start)
