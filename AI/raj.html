@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Depression Expert System for IT Employees</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Depression Expert System</h1>
+  <p class="description">
+    This expert system evaluates possible signs of depression in IT sector employees based on workplace stress, emotional state, sleep patterns, productivity, and social behavior.
+  </p>
+  <form id="depressionForm"></form>
+  <button onclick="evaluateDepression()">Analyze Mental State</button>
+  <div class="result" id="resultBox">
+    <div class="score" id="scoreText"></div>
+    <div class="recommendation" id="recommendationText"></div>
+  </div>
+  <footer>
+    This tool is for educational purposes only and is not a medical diagnosis system.
+  </footer>
+</div>
+
+<script>
+const questions = [
+  "Do you often feel mentally exhausted after work?",
+  "Do you struggle to concentrate during coding or meetings?",
+  "Do you frequently feel unmotivated at work?",
+  "Do you experience sleep problems due to work stress?",
+  "Do you feel emotionally drained most days?",
+  "Do you avoid interacting with colleagues or friends?",
+  "Do deadlines create overwhelming anxiety for you?",
+  "Do you feel less productive than before?",
+  "Do you frequently experience mood swings?",
+  "Do you feel hopeless about your career growth?",
+  "Do you work overtime very frequently?",
+  "Do you feel isolated while working remotely or in office?",
+  "Do you find it difficult to enjoy activities you previously liked?",
+  "Do you often overthink mistakes at work?",
+  "Do you feel pressure from management affects your mental health?",
+  "Do you experience frequent headaches or fatigue?",
+  "Do you feel anxious before starting work each day?",
+  "Do you have trouble balancing work and personal life?",
+  "Do you feel emotionally unsupported at work?",
+  "Do you often feel sadness without clear reason?"
+];
+
+const form = document.getElementById("depressionForm");
+questions.forEach((question, index) => {
+  const div = document.createElement("div");
+  div.className = "question";
+  div.innerHTML = `
+    <h3>Q${index + 1}. ${question}</h3>
+    <select id="q${index}" required>
+      <option value="0">Never</option>
+      <option value="1">Rarely</option>
+      <option value="2">Sometimes</option>
+      <option value="3">Often</option>
+      <option value="4">Always</option>
+    </select>
+  `;
+
+  form.appendChild(div);
+});
+
+function evaluateDepression() {
+  const weights = [
+    2, 2, 2, 3, 3,
+    2, 2, 2, 2, 3,
+    1, 2, 3, 2, 2,
+    2, 3, 2, 3, 3
+  ];
+  let totalScore = 0;
+  let detectedSymptoms = [];
+  for (let i = 0; i < questions.length; i++) {
+    const answer = parseInt(document.getElementById(`q${i}`).value);
+    totalScore += answer * weights[i];
+    if (answer >= 3) {
+      detectedSymptoms.push(questions[i]);
+    }
+  }
+  let level = "";
+  let advice = "";
+  let condition = "";
+  if (totalScore <= 25) {
+    level = "Psychologically Stable";
+    condition = "No Clinically Significant Depressive Indicators";
+    advice = "The assessment does not indicate clinically significant depressive symptomatology. Current responses suggest manageable occupational stress levels and generally stable emotional functioning.";
+  } else if (totalScore <= 45) {
+    level = "Subclinical Depressive State";
+    condition = "Early-Stage Depressive Symptom Presentation";
+    advice = "The responses indicate emerging depressive tendencies including emotional fatigue, stress sensitivity, and reduced psychological resilience. Preventive intervention and lifestyle regulation are advisable.";
+  } else if (totalScore <= 65) {
+    level = "Clinically Moderate Depression";
+    condition = "Moderate Depressive Symptomatology";
+    advice = "The assessment reflects clinically relevant depressive symptoms associated with occupational burnout, emotional exhaustion, cognitive strain, and reduced motivation. Psychological consultation is recommended.";
+  } else if (totalScore <= 85) {
+    level = "Major Depressive State";
+    condition = "Moderately Severe Major Depressive Presentation";
+    advice = "The responses indicate substantial depressive symptom severity affecting emotional regulation, concentration, productivity, social engagement, and occupational functioning. Professional mental health intervention is strongly advised.";
+  } else {
+    level = "Severe Major Depressive Disorder Risk";
+    condition = "Severe Depressive and Burnout Presentation";
+    advice = "The assessment reflects severe depressive symptom indicators including persistent emotional distress, psychological exhaustion, social withdrawal, and functional impairment. Immediate professional psychiatric or psychological support is strongly recommended.";
+  }
+
+  let symptomHTML = "";
+  if (detectedSymptoms.length > 0) {
+    symptomHTML += "<h3>Detected Symptoms are answers from the following: </h3><ul>";
+    detectedSymptoms.forEach(symptom => {
+      symptomHTML += `<li>${symptom}</li>`;
+    });
+    symptomHTML += "</ul>";
+  }
+  document.getElementById("resultBox").style.display = "block";
+  document.getElementById("scoreText").innerHTML = `
+    Total Weighted Score: ${totalScore}<br><br>
+    Depression Level: <b>${level}</b><br><br>
+    Detected Condition: <b>${condition}</b>
+  `;
+  document.getElementById("recommendationText").innerHTML = `
+    ${advice}
+    <br><br>
+    ${symptomHTML}
+  `;
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
+}
+</script>
+</body>
+</html>
