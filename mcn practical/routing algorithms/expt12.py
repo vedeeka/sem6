@@ -1,40 +1,43 @@
 def bellman_ford(graph, vertices, source):
-    distance = [float('inf')] * (vertices + 1)
-    distance[source] = 0
-    print("\nInitial Routing Table\n------------------------------------------------")
-    for i in range(1, vertices + 1):
-        print(f"Router {i} --> {distance[i]}")
-    for iteration in range(vertices - 1):
-        print(f"\nIteration {iteration + 1}\n------------------------------------------------")
+    dist = [float("inf")] * vertices
+    dist[source] = 0
+
+    print("\nInitial Routing Table")
+    for i in range(vertices):
+        print(f"Router {i} --> {dist[i]}")
+
+    for i in range(vertices - 1):
+        print(f"\nIteration {i + 1}")
         updated = False
+
         for u, v, w in graph:
-            if distance[u] != float('inf') and distance[u] + w < distance[v]:
-                old_distance = distance[v]
-                distance[v] = distance[u] + w
+            if dist[u] != float("inf") and dist[u] + w < dist[v]:
+                print(f"Updating Router {v}: {dist[v]} -> {dist[u] + w}")
+                dist[v] = dist[u] + w
                 updated = True
-                print(f"Updating Router {v}")
-                print(f"Path: Router {u} --> Router {v}")
-                print(f"Edge Cost = {w}")
-                print(f"Old Distance = {old_distance}")
-                print(f"New Distance = {distance[v]}")
-                print()
-        print("Routing Table After Iteration\n------------------------------------------------")
-        for i in range(1, vertices + 1):
-            print(f"Router {i} --> {distance[i]}")
+
+        print("\nRouting Table")
+        for j in range(vertices):
+            print(f"Router {j} --> {dist[j]}")
+
         if not updated:
-            print("\nNo further updates possible.")
-            print("Shortest paths already found.")
+            print("\nNo further updates.")
             break
-    print("\nFinal Routing Table\n------------------------------------------------\nDestination Router\tMinimum Distance")
-    for i in range(1, vertices + 1):
-        print(f"{i}\t\t\t{distance[i]}")
+
+    print("\nFinal Routing Table")
+    print("Destination\tDistance")
+    for i in range(vertices):
+        print(i, "\t\t", dist[i])
+
 
 graph = []
-vertices = int(input("Enter number of routers(vertices): "))
-edges = int(input("Enter number of edges: "))
-print("\nEnter source destination cost:")
-for i in range(edges):
-    u, v, w = map(int, input(f"Edge {i+1}: ").split())
-    graph.append((u, v, w))
-source = int(input("\nEnter source router: "))
-bellman_ford(graph, vertices, source)
+v = int(input("Enter number of routers: "))
+e = int(input("Enter number of edges: "))
+
+print("Enter source destination cost:")
+for i in range(e):
+    u, v1, w = map(int, input().split())
+    graph.append((u, v1, w))
+
+source = int(input("Enter source router: "))
+bellman_ford(graph, v, source)
