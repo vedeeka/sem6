@@ -16,7 +16,11 @@ while True:
         filename = message.split()[1]
         filepath = filename[1:]
         if filepath == "":
-            filepath = "index.html"
+            filepath = "mcn_practical/webserver/index.html"
+        
+        if filepath == "favicon.ico":
+            connectionSocket.close()
+            continue
         print("Opening file:", filepath)
         with open(filepath, "rb") as f:
             outputdata = f.read()

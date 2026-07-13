@@ -1,9 +1,12 @@
+#no need for this if u give input in correct format
 def normalize_bits(bit_string):
     bit_string = bit_string.strip().replace(" ", "")
     if not bit_string or any(ch not in "01" for ch in bit_string):
         raise ValueError("Input must contain only 0 and 1.")
     return bit_string
 
+
+#no need for this also if u want formating then only its good to use
 def group_bits(bit_string, size=8):
     return " ".join(bit_string[i : i + size] for i in range(0, len(bit_string), size))
 
@@ -27,3 +30,4 @@ if __name__ == "__main__":
     p_bit, tx_data = parity_bit_method(user_data, user_type)
     print(f"Calculated Parity Bit: {p_bit}")
     print(f"Transmitted Data     : {group_bits(tx_data)}")
+    print(f"Transmitted Data     : {tx_data}") 

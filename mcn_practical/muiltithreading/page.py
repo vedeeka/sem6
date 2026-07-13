@@ -60,3 +60,6 @@ while True:
 
     t = threading.Thread(target=handle_client, args=(client,))
     t.start()
+
+
+#curl -x http://127.0.0.1:8888 http://example.com

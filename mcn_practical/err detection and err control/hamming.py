@@ -3,45 +3,61 @@ from parity import normalize_bits
 def hamming_encode(data):
     data = normalize_bits(data)
     m = len(data)
-    
+
     r = 0
     while 2**r < (m + r + 1):
         r += 1
-        
+
     n = m + r
     code = ["0"] * (n + 1)
-    
+
     j = 0
     for i in range(1, n + 1):
         if (i & (i - 1)) != 0:
             code[i] = data[j]
             j += 1
-            
+
     for i in range(r):
         p = 2**i
-        parity_val = sum(int(code[k]) for k in range(1, n + 1) if k & p) % 2
+        count = 0
+
+        for k in range(1, n + 1):
+            if k & p:
+                count += int(code[k])
+
+        parity_val = count % 2
         code[p] = str(parity_val)
-        
+
     return "".join(code[1:])
 
 def hamming_detect_correct(codeword):
     codeword = normalize_bits(codeword)
     n = len(codeword)
     code = ["0"] + list(codeword)
-    
+
     r = 0
     while 2**r <= n:
         r += 1
-        
+
     error_pos = 0
+
     for i in range(r):
         p = 2**i
-        if sum(int(code[k]) for k in range(1, n + 1) if k & p) % 2 != 0:
+        count = 0
+
+        for k in range(1, n + 1):
+            if k & p:
+                count += int(code[k])
+
+        if count % 2 != 0:
             error_pos += p
-            
+
     if 1 <= error_pos <= n:
-        code[error_pos] = "1" if code[error_pos] == "0" else "0"
-        
+        if code[error_pos] == "0":
+            code[error_pos] = "1"
+        else:
+            code[error_pos] = "0"
+
     return error_pos, "".join(code[1:])
 
 # Execution with User Input
