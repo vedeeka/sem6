@@ -1,8 +1,8 @@
-from collections import deque as stack
+from collections import deque 
 
 def bfs(start, graph):
     visited = set()
-    queue = stack([start])
+    queue = deque([start])
     result = []
     
     while queue:
