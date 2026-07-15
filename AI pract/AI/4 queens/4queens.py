@@ -10,7 +10,9 @@ def safe(k):
 
 def solve(k=0):
     if k == N:
-        return True
+        print_board()
+        print("\n")
+        return
 
     for i in range(k, N):
         cols[k], cols[i] = cols[i], cols[k]
