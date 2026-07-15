@@ -1,85 +1,62 @@
 from heapq import heappush, heappop
 
 def astar(graph, h, start, goal):
-    open_heap = []
-    open_map = {}    
-    closed_map = {}  
+    pq = []
+    parent = {}
+    g = {}
 
-    g_start = 0
-    f_start = g_start + h[start]
-    start_item = (start, "null", h[start], g_start, f_start)
+    heappush(pq, (h[start], start))
+    parent[start] = None
+    g[start] = 0
 
-    heappush(open_heap, (f_start, start))
-    open_map[start] = start_item
-
-    print(f"{'OPEN':<60} | {'CLOSED'}")
-    print("-" * 100)
-
-    while open_heap:
-        sorted_open_nodes = sorted(open_map.values(), key=lambda item: item[4])
-
-        open_str = ", ".join([str(v) for v in sorted_open_nodes])
-        closed_str = ", ".join([str(v) for v in closed_map.values()]) if closed_map else "()"
-        print(f"{open_str:<60} | {closed_str}")
-
-        _, current = heappop(open_heap)
-
-        if current not in open_map:
-            continue
-
-        item = open_map.pop(current)
-        closed_map[current] = item
+    while pq:
+        f, current = heappop(pq)
 
         if current == goal:
             path = []
-            temp = goal
-            
-            _, _, _, final_cost, _ = closed_map[goal]
-            
-            while temp != "null":
-                n, p, _, _, _ = closed_map[temp]
-                path.append(n)
-                temp = p
-            path.reverse()
-            return path, final_cost
+            while current is not None:
+                path.append(current)
+                current = parent[current]
+            return path[::-1], g[goal]
 
         for neighbor, cost in graph.get(current, []):
-            if neighbor in closed_map:
-                continue
+            new_g = g[current] + cost
 
-            new_g = item[3] + cost
-            new_h = h[neighbor]
-            new_f = new_g + new_h
+            if neighbor not in g or new_g < g[neighbor]:
+                g[neighbor] = new_g
+                parent[neighbor] = current
+                heappush(pq, (new_g + h[neighbor], neighbor))
 
-            if neighbor not in open_map or new_g < open_map[neighbor][3]:
-                open_map[neighbor] = (neighbor, current, new_h, new_g, new_f)
-                heappush(open_heap, (new_f, neighbor))
-
-    return None, float("inf")
+    return None, None
 
 
-if __name__ == "__main__":
-    graph = {
-        'A': [('B', 1), ('C', 4)],
-        'B': [('D', 5), ('E', 12)],
-        'C': [('F', 2)],
-        'D': [('G', 3)],
-        'E': [('G', 4)],
-        'F': [('G', 2)],
-        'G': []
-    }
+graph = {}
+h = {}
 
-    h = {
-        'A': 7,
-        'B': 6,
-        'C': 2,
-        'D': 3,
-        'E': 6,
-        'F': 1,
-        'G': 0
-    }
+n = int(input("Enter number of nodes: "))
 
-    path, cost = astar(graph, h, 'A', 'G')
-    print("\nGoal State Found")
-    print("\nPATH :", path)
-    print("COST :", cost)
+for _ in range(n):
+    node = input("Enter node: ")
+    m = int(input(f"Number of neighbors of {node}: "))
+
+    graph[node] = []
+
+    for _ in range(m):
+        neighbor = input("Neighbor: ")
+        cost = int(input("Cost: "))
+        graph[node].append((neighbor, cost))
+
+print("\nEnter heuristic values:")
+for node in graph:
+    h[node] = int(input(f"{node}: "))
+
+start = input("\nEnter start node: ")
+goal = input("Enter goal node: ")
+
+path, cost = astar(graph, h, start, goal)
+
+if path:
+    print("\nPath:", " -> ".join(path))
+    print("Cost:", cost)
+else:
+    print("No Path Found")

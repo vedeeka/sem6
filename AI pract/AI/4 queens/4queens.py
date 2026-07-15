@@ -1,34 +1,38 @@
-N = 4
+N = int(input("Enter the value of N: "))
 
 cols = list(range(N))
 
-def safe_partial(k):
+def safe(k):
     for i in range(k):
-        for j in range(i+1, k+1):
-            if abs(cols[i] - cols[j]) == abs(i - j):
-                return False
+        if abs(cols[i] - cols[k]) == abs(i - k):
+            return False
     return True
 
-def solve_swap(k=0):
-    if k >= N:
+def solve(k=0):
+    if k == N:
         return True
+
     for i in range(k, N):
         cols[k], cols[i] = cols[i], cols[k]
-        if safe_partial(k):
-            if solve_swap(k+1):
-                return True
+
+        if safe(k) and solve(k + 1):
+            return True
+
         cols[k], cols[i] = cols[i], cols[k]
+
     return False
 
-def print_solution():
+def print_board():
     for r in range(N):
-        line = []
         for c in range(N):
-            line.append('Q' if cols[c] == r else '.')
-        print(' '.join(line))
+            if cols[c] == r:
+                print("Q", end=" ")
+            else:
+                print(".", end=" ")
+        print()
 
-if solve_swap():
-    print('Solution Found:\n')
-    print_solution()
+if solve():
+    print("\nSolution Found:\n")
+    print_board()
 else:
-    print('No Solution Exists')
+    print("No Solution Exists")

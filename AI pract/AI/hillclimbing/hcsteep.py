@@ -1,43 +1,41 @@
-def simple_hill_climbing(graph, start, heuristic_values):
+def hill_climbing(graph, start, h):
     current = start
     path = [current]
-    step = 1
-    
+
     while True:
-        neighbors = graph.get(current, [])
-        next_node = None
-        
-        for neighbor in neighbors:
-            if heuristic_values[neighbor] < heuristic_values[current]:
-                if next_node is None or heuristic_values[neighbor] < heuristic_values[next_node]:
-                    next_node = neighbor
-                
-        if next_node is None:
-            break 
-            
-        current = next_node
+        best = None
+
+        for neighbor in graph[current]:
+            if h[neighbor] < h[current]:
+                if best is None or h[neighbor] < h[best]:
+                    best = neighbor
+
+        if best is None:
+            break
+
+        current = best
         path.append(current)
-        step += 1
-        
+
     return path
 
-if __name__ == "__main__":
-    graph = {}
-    heuristic_values = {}
-    
-    while True:
-        node = input("Enter node (or 'done' to finish): ").strip()
-        if node.lower() == 'done':
-            break
-        neighbors = input(f"Enter neighbors for {node}: ").strip()
-        graph[node] = [n.strip() for n in neighbors if n.strip()]
-    
-    print("\nEnter heuristic values:")
-    for node in graph:
-        value = int(input(f"Heuristic value for {node}: "))
-        heuristic_values[node] = value
-    
-    start_node = input("\nEnter start node: ").strip()
-    final_path = simple_hill_climbing(graph, start_node, heuristic_values)
-    
-    print(" -> ".join(final_path))
+
+graph = {}
+h = {}
+
+while True:
+    node = input("Enter node (done to stop): ")
+    if node.lower() == "done":
+        break
+
+    graph[node] = input(f"Enter neighbors of {node}: ").split()
+
+print("\nEnter heuristic values:")
+for node in graph:
+    h[node] = int(input(f"{node}: "))
+
+start = input("\nEnter start node: ")
+
+path = hill_climbing(graph, start, h)
+
+print("\nPath:")
+print(" -> ".join(path))
