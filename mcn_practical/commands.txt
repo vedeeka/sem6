@@ -1,0 +1,31 @@
+Sure! Below are **only the commands mentioned in your Experiment No. 15**, along with a **one-line description** for each.
+
+| **Command**     | **Syntax / Example**       | **One-Line Description**                                                                        |
+| --------------- | -------------------------- | ----------------------------------------------------------------------------------------------- |
+| `ipconfig`      | `ipconfig`                 | Displays the basic IP configuration of the computer.                                            |
+| `ipconfig /all` | `ipconfig /all`            | Displays detailed network information including IP, MAC address, DNS, and gateway.              |
+| `ping`          | `ping google.com`          | Tests connectivity between the local computer and another device or website using ICMP packets. |
+| `tracert`       | `tracert google.com`       | Shows the route (hops) taken by packets to reach the destination.                               |
+| `netstat`       | `netstat`                  | Displays active network connections and listening ports.                                        |
+| `netstat -a`    | `netstat -a`               | Displays all active TCP/UDP connections and listening ports.                                    |
+| `arp`           | `arp -a`                   | Displays the ARP cache, showing IP address to MAC address mappings.                             |
+| `hostname`      | `hostname`                 | Displays the name (hostname) of the local computer.                                             |
+| `getmac`        | `getmac`                   | Displays the MAC (physical) address of the network adapters.                                    |
+| `route`         | `route print`              | Displays the routing table used to forward network packets.                                     |
+| `netsh`         | `netsh wlan show profiles` | Displays all saved Wi-Fi profiles on the computer.                                              |
+| `curl`          | `curl https://google.com`  | Retrieves data or web pages from a server using HTTP/HTTPS.                                     |
+
+### Short Viva Descriptions
+
+* **`ipconfig`** – Displays the IP configuration of the system.
+* **`ping`** – Checks whether a remote host is reachable.
+* **`tracert`** – Traces the path taken by packets to a destination.
+* **`netstat`** – Displays active network connections and ports.
+* **`arp`** – Shows the mapping between IP addresses and MAC addresses.
+* **`hostname`** – Displays the computer's hostname.
+* **`getmac`** – Displays the MAC address of the network adapter.
+* **`route print`** – Displays the routing table.
+* **`netsh wlan show profiles`** – Lists all saved wireless network profiles.
+* **`curl`** – Downloads or retrieves data from a web server.
+
+These are **exactly the commands from your experiment** with concise one-line descriptions suitable for your practical record and viva.

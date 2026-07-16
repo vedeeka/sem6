@@ -1,0 +1,214 @@
+Below is a **record-ready practical table** you can directly use in your lab manual.
+
+---
+
+# EXPERIMENT 13
+
+## Configuration of Network Topologies Using Cisco Packet Tracer
+
+---
+
+# 1. BUS TOPOLOGY
+
+| **Parameter**        | **Configuration**                                                                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Devices Required     | 4 PCs, 2 Switches (2960)                                                                                                                       |
+| Cable Used           | PC → Switch: Copper Straight-Through, Switch → Switch: Copper Cross-Over                                                                       |
+| IP Addressing        | PC1: 192.168.1.2, PC2: 192.168.1.3, PC3: 192.168.1.4, PC4: 192.168.1.5                                                                         |
+| Subnet Mask          | 255.255.255.0                                                                                                                                  |
+| Default Gateway      | 192.168.1.1                                                                                                                                    |
+| Configuration Steps  | 1. Place 2 switches and 4 PCs.<br>2. Connect PCs to switches.<br>3. Connect switches together.<br>4. Assign static IPs.<br>5. Test using Ping. |
+| Verification Command | `ping 192.168.1.5`                                                                                                                             |
+| Expected Output      | Reply from 192.168.1.5                                                                                                                         |
+
+---
+
+# 2. RING TOPOLOGY
+
+| **Parameter**        | **Configuration**                                                                                                                                                            |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Devices Required     | 3 Switches, 3 PCs                                                                                                                                                            |
+| Cable Used           | PC → Switch: Straight-Through, Switch → Switch: Cross-Over                                                                                                                   |
+| IP Addressing        | PC1: 192.168.1.2, PC2: 192.168.1.3, PC3: 192.168.1.4                                                                                                                         |
+| Subnet Mask          | 255.255.255.0                                                                                                                                                                |
+| Default Gateway      | 192.168.1.1                                                                                                                                                                  |
+| Configuration Steps  | 1. Arrange switches in a circular ring.<br>2. Connect switches to form a closed loop.<br>3. Connect one PC to each switch.<br>4. Assign static IPs.<br>5. Test connectivity. |
+| Verification Command | `ping 192.168.1.4`                                                                                                                                                           |
+| Expected Output      | Reply from 192.168.1.4                                                                                                                                                       |
+
+---
+
+# 3. STAR TOPOLOGY
+
+| **Parameter**        | **Configuration**                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Devices Required     | 1 Switch, 4 PCs                                                                                               |
+| Cable Used           | Copper Straight-Through                                                                                       |
+| IP Addressing        | PC1: 192.168.1.2, PC2: 192.168.1.3, PC3: 192.168.1.4, PC4: 192.168.1.5                                        |
+| Subnet Mask          | 255.255.255.0                                                                                                 |
+| Default Gateway      | 192.168.1.1                                                                                                   |
+| Configuration Steps  | 1. Place one switch.<br>2. Connect all PCs to the switch.<br>3. Assign IP addresses.<br>4. Verify using Ping. |
+| Verification Command | `ping 192.168.1.5`                                                                                            |
+| Expected Output      | Reply from 192.168.1.5                                                                                        |
+
+---
+
+# 4. MESH TOPOLOGY
+
+| **Parameter**        | **Configuration**                                                                                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Devices Required     | 4 Switches, 4 PCs                                                                                                                                                  |
+| Cable Used           | Switch → Switch: Cross-Over, PC → Switch: Straight-Through                                                                                                         |
+| Formula              | n(n−1)/2                                                                                                                                                           |
+| Number of Links      | 6                                                                                                                                                                  |
+| IP Addressing        | PC1: 192.168.1.2, PC2: 192.168.1.3, PC3: 192.168.1.4, PC4: 192.168.1.5                                                                                             |
+| Subnet Mask          | 255.255.255.0                                                                                                                                                      |
+| Default Gateway      | 192.168.1.1                                                                                                                                                        |
+| Configuration Steps  | 1. Place four switches.<br>2. Connect every switch to every other switch.<br>3. Connect one PC to each switch.<br>4. Assign IP addresses.<br>5. Test connectivity. |
+| Verification Command | `ping 192.168.1.4`                                                                                                                                                 |
+| Expected Output      | Reply from 192.168.1.4                                                                                                                                             |
+
+---
+
+# 5. HYBRID TOPOLOGY
+
+| **Parameter**        | **Configuration**                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Devices Required     | 2 Switches, 6 PCs                                                                                             |
+| Cable Used           | Straight-Through and Cross-Over                                                                               |
+| IP Addressing        | PC1: 192.168.1.2, PC2: 192.168.1.3, PC3: 192.168.1.4, PC4: 192.168.1.5, PC5: 192.168.1.6, PC6: 192.168.1.7    |
+| Subnet Mask          | 255.255.255.0                                                                                                 |
+| Default Gateway      | 192.168.1.1                                                                                                   |
+| Configuration Steps  | 1. Create two star topologies.<br>2. Connect both switches.<br>3. Assign IP addresses.<br>4. Test using Ping. |
+| Verification Command | `ping 192.168.1.7`                                                                                            |
+| Expected Output      | Reply from 192.168.1.7                                                                                        |
+
+---
+
+# DHCP CONFIGURATION
+
+| **Parameter**        | **Configuration**                                                |
+| -------------------- | ---------------------------------------------------------------- |
+| Devices Required     | Server, Switch, PCs                                              |
+| Server IP            | 192.168.1.10                                                     |
+| Subnet Mask          | 255.255.255.0                                                    |
+| Default Gateway      | 192.168.1.1                                                      |
+| DNS Server           | 192.168.1.10                                                     |
+| Start IP Address     | 192.168.1.20                                                     |
+| Maximum Users        | 100                                                              |
+| Packet Tracer Path   | Server → Services → DHCP                                         |
+| Steps                | Turn DHCP ON → Enter Pool Name → Gateway → DNS → Start IP → Save |
+| Client Configuration | Desktop → IP Configuration → DHCP                                |
+| Verification         | `ipconfig` / Ping                                                |
+
+---
+
+# DNS CONFIGURATION
+
+| **Parameter**      | **Configuration**                                       |
+| ------------------ | ------------------------------------------------------- |
+| Server IP          | 192.168.1.10                                            |
+| Service            | DNS ON                                                  |
+| Record Name        | myserver.com                                            |
+| IP Mapping         | 192.168.1.10                                            |
+| Packet Tracer Path | Server → Services → DNS                                 |
+| Steps              | Turn DNS ON → Enter Name → Enter IP Address → Click Add |
+| Verification       | Browser → [http://myserver.com](http://myserver.com)    |
+
+---
+
+# HTTP (WEB SERVER)
+
+| **Parameter**      | **Configuration**                                    |
+| ------------------ | ---------------------------------------------------- |
+| Server IP          | 192.168.1.10                                         |
+| HTTP               | ON                                                   |
+| HTTPS              | ON                                                   |
+| Packet Tracer Path | Server → Services → HTTP                             |
+| HTML File          | index.html                                           |
+| Sample HTML        | `<h1>Welcome to My Network</h1>`                     |
+| Verification       | Browser → [http://192.168.1.10](http://192.168.1.10) |
+
+---
+
+# TELNET CONFIGURATION
+
+### CLI Commands
+
+| **Step**                   | **Command**                            |
+| -------------------------- | -------------------------------------- |
+| Enter Privileged Mode      | `enable`                               |
+| Enter Global Configuration | `configure terminal`                   |
+| Enter VLAN Interface       | `interface vlan 1`                     |
+| Assign Management IP       | `ip address 192.168.1.1 255.255.255.0` |
+| Enable Interface           | `no shutdown`                          |
+| Exit                       | `exit`                                 |
+| Configure VTY Lines        | `line vty 0 4`                         |
+| Set Password               | `password cisco`                       |
+| Enable Login               | `login`                                |
+| Exit                       | `exit`                                 |
+| Enable Password            | `enable password class`                |
+| Exit Configuration         | `end`                                  |
+| Save Configuration         | `copy running-config startup-config`   |
+
+### Verification
+
+| **Command**          | **Purpose**       |
+| -------------------- | ----------------- |
+| `telnet 192.168.1.1` | Connect to Switch |
+| Password             | cisco             |
+
+---
+
+# VLAN CONFIGURATION
+
+### Create VLANs
+
+| **Step**           | **Command**          |
+| ------------------ | -------------------- |
+| Enable             | `enable`             |
+| Configuration Mode | `configure terminal` |
+| Create VLAN 10     | `vlan 10`            |
+| Name VLAN          | `name HR`            |
+| Exit               | `exit`               |
+| Create VLAN 20     | `vlan 20`            |
+| Name VLAN          | `name SALES`         |
+| Exit               | `exit`               |
+
+---
+
+### Assign Ports
+
+| **Step**         | **Command**                 |
+| ---------------- | --------------------------- |
+| Select Port      | `interface fa0/1`           |
+| Access Mode      | `switchport mode access`    |
+| Assign VLAN      | `switchport access vlan 10` |
+| Exit             | `exit`                      |
+| Select Next Port | `interface fa0/2`           |
+| Access Mode      | `switchport mode access`    |
+| Assign VLAN      | `switchport access vlan 20` |
+| Exit             | `exit`                      |
+
+---
+
+### Verification
+
+| **Command**           | **Purpose**                           |
+| --------------------- | ------------------------------------- |
+| `show vlan brief`     | Displays all VLANs and assigned ports |
+| `show running-config` | Displays current switch configuration |
+
+---
+
+# Common IP Address Table
+
+| **Device** | **IP Address** | **Subnet Mask** | **Gateway** |
+| ---------- | -------------- | --------------- | ----------- |
+| Server     | 192.168.1.10   | 255.255.255.0   | 192.168.1.1 |
+| PC1        | 192.168.1.2    | 255.255.255.0   | 192.168.1.1 |
+| PC2        | 192.168.1.3    | 255.255.255.0   | 192.168.1.1 |
+| PC3        | 192.168.1.4    | 255.255.255.0   | 192.168.1.1 |
+| PC4        | 192.168.1.5    | 255.255.255.0   | 192.168.1.1 |
+
+These tables are suitable for writing directly in a lab record or practical file and cover the configuration details, commands, verification, and addressing for each part of the experiment.
