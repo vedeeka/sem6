@@ -1,3 +1,12 @@
+# NRZ-L (Non-Return-to-Zero-Level): Signal level depends on the bit value (0 = +V, 1 = −V).
+# NRZ-I (Non-Return-to-Zero-Inverted): A 1 causes a transition; 0 causes no change.
+# RZ (Return-to-Zero): The signal returns to 0 V during the second half of every bit.
+# Manchester Encoding: There is always a transition in the middle of each bit; 0 = Low→High, 1 = High→Low.
+# Differential Manchester Encoding: There is always a middle transition; 0 has an extra transition at the beginning, 1 has none.
+# AMI (Alternate Mark Inversion): 0 = 0 V, while successive 1s alternate between +V and −V.
+# Pseudoternary: 1 = 0 V, while successive 0s alternate between +V and −V.
+
+
 def nrz_unipolar(data):
     result = []
     for b in data:
