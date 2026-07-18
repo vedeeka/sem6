@@ -126,30 +126,31 @@ def pseudoternary(data):
 
     return result
 
-
 def draw(signal):
-    print("\n+V :", end=" ")
+    print()
+
+    print("+V :", end=" ")
     for s in signal:
         if s == '+':
-            print("---", end=" ")
+            print("---|", end="")
         else:
-            print("   ", end=" ")
+            print("   |", end="")
     print()
 
     print(" 0 :", end=" ")
     for s in signal:
         if s == '0':
-            print("---", end=" ")
+            print("---|", end="")
         else:
-            print("   ", end=" ")
+            print("   |", end="")
     print()
 
     print("-V :", end=" ")
     for s in signal:
         if s == '-':
-            print("---", end=" ")
+            print("---|", end="")
         else:
-            print("   ", end=" ")
+            print("   |", end="")
     print("\n")
 
 

@@ -2,11 +2,15 @@ import random
 
 def selective_repeat(frames, window):
     ack = [False] * frames
+    start = 0
 
-    while False in ack:
+    while start < frames:
 
         print("\nSending Window:")
-        for i in range(frames):
+
+        end = min(start + window, frames)
+
+        for i in range(start, end):
             if not ack[i]:
                 print("Frame", i, "sent")
 
@@ -16,9 +20,8 @@ def selective_repeat(frames, window):
                 else:
                     print("Frame", i, "lost")
 
-            # Stop after one window
-            if i == window - 1:
-                break
+        while start < frames and ack[start]:
+            start += 1
 
         print("Sliding Window...\n")
 
