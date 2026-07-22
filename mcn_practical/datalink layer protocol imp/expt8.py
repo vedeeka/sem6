@@ -29,3 +29,48 @@ frames = int(input("Enter total frames: "))
 window = int(input("Enter window size: "))
 
 selective_repeat(frames, window)
+
+
+
+
+
+import random
+def selective_repeat(data,ws):
+    ack=[False]*data
+    base=0
+
+    while(base<data):
+        end=min(base+ws,data)
+
+        print("sending frame",base,end)
+        i=base
+        while(i<end):
+            if ack[i]==False:
+                print("sending data",i)
+
+                got=random.choice([True,False])
+                if got:
+                    print("got frame",i)
+                    ac=random.choice([True,False])
+                    if ac:
+                        print("ack recieved")
+                        ack[i] = True
+                        
+
+                    else:
+                        base=i
+                        print("ack not recieved")
+                                    
+
+                else:
+                    base=i
+                    print("frame not got")
+                
+            i+=1
+            
+        k=0
+        while k < len(ack) and ack[k]:
+            k += 1
+        base=k
+
+selective_repeat(10,4)

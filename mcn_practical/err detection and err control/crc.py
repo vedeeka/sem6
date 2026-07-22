@@ -1,20 +1,22 @@
-def crc(data, poly):
-    n = len(poly) - 1
-    data = list(data + "0" * n)
+def crc(data, pol):
+    original = data
+    m = len(data)
+    n = len(pol)
 
-    for i in range(len(data) - n):
+    data += "0" * (n - 1)
+    data = list(data)
+
+    for i in range(m):
         if data[i] == "1":
-            for j in range(len(poly)):
-                if data[i + j] == poly[j]:
+            for j in range(n):
+                if data[i + j] == pol[j]:
                     data[i + j] = "0"
                 else:
                     data[i + j] = "1"
 
-    rem = "".join(data[-n:])
-    print("CRC :", rem)
-    print("Sent:", "".join(data[:-n]) + rem)
+    rem = "".join(data[-(n - 1):])
 
-data = input("Enter data bits: ")
-poly = input("Enter generator polynomial: ")
+    print("CRC:", rem)
+    print("Codeword:", original + rem)
 
-crc(data, poly)
+crc("1101011011", "100000111")

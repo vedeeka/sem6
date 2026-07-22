@@ -26,3 +26,38 @@ if __name__ == "__main__":
     start_node = input("Enter the starting node: ")
     
     print("DFS traversal:", dfs(graph, start_node))
+
+
+
+
+
+
+
+
+
+
+
+#     graph = {}
+
+# n = int(input("Enter the number of nodes: "))
+
+# for i in range(n):
+
+#     graph[i] = list(map(int, input(f"Enter neighbours of node {i}: ").split()))
+
+# from collections import deque
+
+# q=deque()
+# q.append(0)
+# v = set()
+# v.add(0)
+# while q:
+#     k=q.pop()
+    
+#     print(k)
+#     for i in reversed(graph[k]):
+#         if i not in v:
+#             v.add(i)
+#             q.append(i)
+
+

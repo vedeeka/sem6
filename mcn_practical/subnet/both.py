@@ -3,6 +3,7 @@ import math
 
 def flsm():
     network = ipaddress.IPv4Network(input("Enter Network (Ex: 192.168.1.0/24): "), strict=False)
+    
     n = int(input("Enter Number of Subnets: "))
 
     new_prefix = network.prefixlen + math.ceil(math.log2(n))

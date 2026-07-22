@@ -10,6 +10,7 @@ def checksum(data, size):
     total = 0
     for word in words:
         total += int(word, 2)
+        print(f"Adding {word} to total gives {total}")
         if total >= 2**size:
             total = (total - 2**size) + 1
 

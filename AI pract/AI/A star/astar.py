@@ -60,3 +60,46 @@ if path:
     print("Cost:", cost)
 else:
     print("No Path Found")
+
+
+
+
+
+
+
+
+
+
+
+
+
+#     graph = {
+#     'A': [('B', 1), ('C', 4)],
+#     'B': [('D', 2), ('E', 5)],
+#     'C': [('F', 3)],
+#     'D': [('G', 5)],
+#     'E': [('G', 2)],
+#     'F': [('G', 1)],
+#     'G': []
+# }
+
+# h = {
+#     'A': 7,
+#     'B': 6,
+#     'C': 2,
+#     'D': 5,
+#     'E': 1,
+#     'F': 1,
+#     'G': 0
+# }
+
+# start = 'A'
+# goal = 'G'
+
+# path, cost = astar(graph, h, start, goal)
+
+# if path:
+#     print("Path:", " -> ".join(path))
+#     print("Cost:", cost)
+# else:
+#     print("No Path Found")

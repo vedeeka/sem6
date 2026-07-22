@@ -22,11 +22,10 @@ def hamming_encode(data):
         count = 0
 
         for k in range(1, n + 1):
-            if k & p:
+            if k & p and k != p:
                 count += int(code[k])
 
-        parity_val = count % 2
-        code[p] = str(parity_val)
+        code[p] = str(count % 2)
 
     return "".join(code[1:])
 

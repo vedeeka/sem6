@@ -1,29 +1,35 @@
-from matplotlib import pyplot as plt
+import socket 
+serverPort = 8080
+host="127.0.0.1"
 
-def lets_go(bits, voltage):
-    x=[0]
-    y=[0]
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+s.bind((host,serverPort))
+s.listen(1)
+
+while True:
+    conn,adrr=s.accept()
+    rec=conn.recv(1024).decode()
+    print(rec)
 
 
-
-    for i,b in enumerate(bits):
-        if b=='1':
-           y+=[-voltage,-voltage]
-           x+=[i,i+1]
-        else:
-            y+=[voltage,voltage]
-            x+=[i,i+1]
+    filepath = "mcn_practical/webserver/index.html"
         
+    if filepath == "favicon.ico":
+            connectionSocket.close()
+            continue
+
+    with open(filepath,'rb') as f:
+        outputdata=f.read()
+
+    response=b"HTTP/1.1 200 OK \r\n"
+    response+=b"Content-type: text/html;charset=utf-8 \r\n"
+    response += b"Content-Length: " + str(len(outputdata)).encode() + b"\r\n"
+    response+=b"Connection : close \r\n"
+    response+=b"\r\n"
 
 
-    plt.step(x,y,where='post')
-    plt.grid()
-    plt.show()       
-
-
-
-
-
-Bits = input("Enter the bits: ")
-voltage = float(input("Enter the voltage: "))
-lets_go(Bits,voltage)
+    conn.sendall(response)
+    conn.sendall(outputdata)

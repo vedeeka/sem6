@@ -68,3 +68,50 @@ while True:
     finally:
         connectionSocket.close()
         print("Connection closed")
+
+
+
+
+
+
+
+
+
+
+# port =8080
+# host="127.0.0.1"
+# from socket import *
+
+# ser=socket(AF_INET,SOCK_STREAM)
+# ser.setsockopt(SOL_SOCKET,SO_REUSEADDR,1)
+# ser.bind((host,port))
+# ser.listen(1)
+
+# while True:
+#     conn,adrr=ser.accept()
+#     print("addr",adrr)
+
+#     rev=conn.recv(1024).decode()
+#     print("rec",rev)
+
+
+#     filepath = "mcn_practical/webserver/index.html"
+
+#     if filepath == "favicon.ico":
+#         conn.close()
+#         continue
+
+#     with open(filepath,'rb') as fb:
+#         outputdata=fb.read()
+
+#     response = b"HTTP/1.1 200 OK\r\n"
+#     response += b"Content-Type: text/html; charset=utf-8\r\n"
+#     response += b"Content-Length: " + str(len(outputdata)).encode() + b"\r\n"
+#     response += b"Connection: close\r\n"
+#     response += b"\r\n"
+#     conn.sendall(response)
+#     conn.sendall(outputdata)
+#     print("Response sent successfully")
+
+
+

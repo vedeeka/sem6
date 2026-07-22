@@ -63,3 +63,4 @@ while True:
 
 
 #curl -x http://127.0.0.1:8888 http://example.com
+#curl -v -x http://127.0.0.1:8888 http://neverssl.com
