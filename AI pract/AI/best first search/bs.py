@@ -58,3 +58,48 @@ if path:
     print("Path:", " -> ".join(path))
 else:
     print("No Path Found")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# graph = {
+#     'A': ['B', 'C'],
+#     'B': ['D', 'E'],
+#     'C': ['F', 'G'],
+#     'D': [],
+#     'E': ['H'],
+#     'F': [],
+#     'G': [],
+#     'H': []
+# }
+
+# h = {
+#     'A': 7,
+#     'B': 6,
+#     'C': 4,
+#     'D': 5,
+#     'E': 3,
+#     'F': 2,
+#     'G': 4,
+#     'H': 0
+# }
+
+# start = 'A'
+# goal = 'H'
+
+# path = best_first_search(graph, start, goal, h)
+
+# if path:
+#     print("Path:", " -> ".join(path))
+# else:
+#     print("No Path Found")

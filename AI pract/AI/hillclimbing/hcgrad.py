@@ -19,24 +19,24 @@ def hill_climbing(graph, start, h):
     return path
 
 
-graph = {}
-h = {}
+# graph = {}
+# h = {}
 
-while True:
-    node = input("Enter node (done to stop): ")
-    if node.lower() == "done":
-        break
+# while True:
+#     node = input("Enter node (done to stop): ")
+#     if node.lower() == "done":
+#         break
 
-    graph[node] = input(f"Neighbors of {node}: ").split()
+#     graph[node] = input(f"Neighbors of {node}: ").split()
 
-print("\nEnter heuristic values")
-for node in graph:
-    h[node] = int(input(f"{node}: "))
+# print("\nEnter heuristic values")
+# for node in graph:
+#     h[node] = int(input(f"{node}: "))
 
-start = input("\nStart node: ")
+# start = input("\nStart node: ")
 
-print("Path:")
-print(" -> ".join(hill_climbing(graph, start, h)))
+# print("Path:")
+# print(" -> ".join(hill_climbing(graph, start, h)))
 
 
 
@@ -76,27 +76,27 @@ print(" -> ".join(hill_climbing(graph, start, h)))
 
 
 
-# graph = {
-#     'A': ['B', 'C'],
-#     'B': ['D', 'E'],
-#     'C': ['F'],
-#     'D': [],
-#     'E': ['G'],
-#     'F': [],
-#     'G': []
-# }
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['G'],
+    'F': [],
+    'G': []
+}
 
-# h = {
-#     'A': 10,
-#     'B': 8,
-#     'C': 6,
-#     'D': 7,
-#     'E': 5,
-#     'F': 4,
-#     'G': 0
-# }
+h = {
+    'A': 10,
+    'B': 8,
+    'C': 6,
+    'D': 7,
+    'E': 5,
+    'F': 4,
+    'G': 0
+}
 
-# start = 'A'
+start = 'A'
 
-# print("Path:")
-# print(" -> ".join(hill_climbing(graph, start, h)))
+print("Path:")
+print(" -> ".join(hill_climbing(graph, start, h)))
