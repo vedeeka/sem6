@@ -41,3 +41,69 @@ def dfs():
         print("No Solution")
 
 dfs()
+
+
+
+
+
+
+
+
+
+
+
+
+def valid(m, c, tm, tc):
+    if m < 0 or c < 0 or m > tm or c > tc:
+        return False
+
+    if m > 0 and c > m:
+        return False
+
+    rm = tm - m
+    rc = tc - c
+    if rm > 0 and rc > rm:
+        return False
+
+    return True
+
+
+def dfs(tm, tc, boat):
+    start = (tm, tc, 1)
+    goal = (0, 0, 0)
+
+    moves = []
+    for i in range(boat + 1):
+        for j in range(boat + 1):
+            if 1 <= i + j <= boat:
+                moves.append((i, j))
+
+    stack = [(start, [start])]
+
+    while stack:
+        (m, c, b), path = stack.pop()
+
+        if (m, c, b) == goal:
+            print("Solution:")
+            for s in path:
+                print(s)
+            return
+
+        for dm, dc in moves:
+            if b:
+                new = (m - dm, c - dc, 0)
+            else:
+                new = (m + dm, c + dc, 1)
+
+            if valid(new[0], new[1], tm, tc) and new not in path:
+                stack.append((new, path + [new]))
+
+    print("No Solution")
+
+
+# Driver Code
+m = int(input("Enter Missionaries: "))
+c = int(input("Enter Cannibals: "))
+boat = int(input("Enter Boat Capacity: "))
+
+dfs(m, c, boat)

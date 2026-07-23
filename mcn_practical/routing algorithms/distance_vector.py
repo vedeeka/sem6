@@ -24,17 +24,17 @@ def bellman_ford(graph, vertices, source):
         print(f"{i}\t\t{dist[i]}\t\t{' -> '.join(map(str, path))}")
 
 
-graph = [
-    (0, 1, 4),
-    (0, 2, 1),
-    (2, 1, 2),
-    (1, 3, 5),
-    (2, 3, 8),
-    (2, 4, 10),
-    (3, 4, 2)
-]
+# Input number of vertices and edges
+V = int(input("Enter number of vertices: "))
+E = int(input("Enter number of edges: "))
 
-V = 5
-source = 0
+graph = []
+
+print("Enter each edge as: source destination weight")
+for _ in range(E):
+    u, v, w = map(int, input().split())
+    graph.append((u, v, w))
+
+source = int(input("Enter source vertex: "))
 
 bellman_ford(graph, V, source)

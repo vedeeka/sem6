@@ -55,7 +55,16 @@ def best_first(start):
 
     return None
 
-start = tuple(map(int, input("Enter start state: ").split()))
+s = input("Enter start state: ")
+l = s.split()
+
+start = []
+for i in l:
+    start.append(int(i))
+
+start = tuple(start)
+
+print(start)
 
 path = best_first(start)
 

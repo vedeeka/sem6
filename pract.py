@@ -1,35 +1,58 @@
-import socket 
-serverPort = 8080
-host="127.0.0.1"
-
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-s.bind((host,serverPort))
-s.listen(1)
-
-while True:
-    conn,adrr=s.accept()
-    rec=conn.recv(1024).decode()
-    print(rec)
+from heapq import heappush,heappop
 
 
-    filepath = "mcn_practical/webserver/index.html"
-        
-    if filepath == "favicon.ico":
-            connectionSocket.close()
-            continue
+def valid(m,c,tm,tc):
+    if m<0 or c<0 or c>tc or m>tm:
+        return False
+    elif m>0 and m<c:
+        return False
+    nm=tm-m
+    nc=tc-c
+    if nm>0 and nm<nc:
+        return False
+    return True
+from collections import deque
+def bfs(tm,tc,b):
+    goal=(0,0,0)
+    start=(tm,tc,1)
 
-    with open(filepath,'rb') as f:
-        outputdata=f.read()
-
-    response=b"HTTP/1.1 200 OK \r\n"
-    response+=b"Content-type: text/html;charset=utf-8 \r\n"
-    response += b"Content-Length: " + str(len(outputdata)).encode() + b"\r\n"
-    response+=b"Connection : close \r\n"
-    response+=b"\r\n"
+    steps=[]
+    for i in range(b+1):
+        for j in range(b+1):
+            if 0<(i+j)<=b:
+                steps.append((i,j))
 
 
-    conn.sendall(response)
-    conn.sendall(outputdata)
+    q = deque([(start, [start])])
+
+    while q:
+        (m,c,b),path=q.popleft()
+
+        if (m,c,b)==goal:
+            print("Solution:")
+            for s in path:
+                print(s)
+            return
+
+        for i,j in steps:
+            if b==0:
+                nm=m+i
+                mc=c+j
+                nb=1
+                
+            else:
+                nm=m-i
+                mc=c-j
+                nb=0
+            if valid(nm,mc,tm,tc) and (nm,mc,nb) not in path:
+                new_state=(nm,mc,nb)
+                q.append((new_state,path+[new_state]))
+    print("No Solution")
+            
+m = int(input("Enter Missionaries: "))
+c = int(input("Enter Cannibals: "))
+boat = int(input("Enter Boat Capacity: "))
+
+bfs(m, c, boat)
+
+
